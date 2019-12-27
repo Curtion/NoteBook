@@ -1,0 +1,1 @@
+[ https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/computercode.html ](https://www.cnblogs.com/zhangziqiu/archive/2011/03/30/computercode.html)
