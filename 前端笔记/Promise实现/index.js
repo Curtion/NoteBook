@@ -1,10 +1,3 @@
-/*
- * 实现Promise对象
- * @Author: Curtion
- * @Date: 2020-07-14 16:02:39
- * @Last Modified by: Curtion
- * @Last Modified time: 2020-07-17 10:16:20
-*/
 // 判断变量否为function
 const isFunction = variable => typeof variable === 'function'
 // 定义Promise的三种状态常量
