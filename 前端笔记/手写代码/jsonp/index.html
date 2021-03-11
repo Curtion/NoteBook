@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jsonp实例</title>
+</head>
+
+<body>
+  <script>
+    let jsonpId = 0
+    function jsonp(url, params, callback) {
+      let id = jsonpId++
+      window['callback' + id] = res => {
+        callback(res)
+        delete window['callback' + id]
+      }
+      let script = document.createElement('script')
+      script.src = url + "?" + new URLSearchParams(params) + "&callback=callback" + id
+      let head = document.getElementsByTagName('head')[0]
+      head.append(script)
+    }
+    jsonp('http://139.159.186.178:3000/sum/', { a: 'Hello', b: 'World' }, res => {
+      console.log(res)
+    })
+    jsonp('http://139.159.186.178:3000/sum/', { a: '1', b: '2' }, res => {
+      console.log(res)
+    })
+    jsonp('http://139.159.186.178:3000/sum/', { a: 'O', b: 'K' }, res => {
+      console.log(res)
+    })
+  </script>
+</body>
+
+</html>
