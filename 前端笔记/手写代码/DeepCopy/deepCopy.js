@@ -1,22 +1,25 @@
 function deepCopy(obj) {
-  let res = {};
-  let func = (obj, res) => {
+  let circularArr = [];
+  let func = (obj) => {
+    // 处理循环引用
+    if (circularArr.includes(obj)) {
+      return obj;
+    } else {
+      circularArr.push(obj);
+    }
+    let res = Array.isArray(obj) ? [] : {};
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) {
         if (typeof obj[key] === "object") {
-          if (Array.isArray(obj[key])) {
-          } else {
-            func(obj[key], res[key]);
-          }
+          res[key] = func(obj[key]);
         } else {
           res[key] = obj[key];
         }
       }
     }
+    return res;
   };
-  func(obj, res);
-  return res;
+  return func(obj);
 }
-const b = { a: "46", b: { c: 1253, d: { ee: 1234 } } };
-console.log(deepCopy(b));
+
 export default deepCopy;
