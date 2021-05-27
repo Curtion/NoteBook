@@ -1,0 +1,14 @@
+{
+  "name": "deepcopy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^27.0.1"
+  }
+}
