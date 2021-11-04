@@ -30,5 +30,14 @@ function main(desire, gift) {
     return false;
   });
 }
-console.log(main([[1, 2], [1, 3], [3]], [1, 3, 4]));
+console.log(
+  main(
+    [
+      [1, 2],
+      [1, 3],
+      [3, 4],
+    ],
+    [1, 3, 4]
+  )
+);
 // 此题复杂度是O(n^n)，大问题
