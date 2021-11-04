@@ -8,7 +8,7 @@ function main(desire, gift) {
       const ngift = [...gift];
       for (let i = 0; i < path.length; i++) {
         const index = ngift.indexOf(path[i]);
-        if (index === -1) break;
+        if (index === -1) return;
         ngift.splice(index, 1);
         if (i === path.length - 1) {
           status = true;
@@ -32,4 +32,4 @@ function main(desire, gift) {
   dfs(0);
   return status;
 }
-console.log(main([[1, 2], [1, 3], [3]], [1, 3, 3]));
+console.log(main([[1, 2], [1, 3, 4], [3]], [1, 3, 4]));
