@@ -2,18 +2,29 @@
 function main(desire, gift) {
   const path = [];
   let status = false;
+  const map = {};
+  for (let item of gift) {
+    if (map[item]) {
+      map[item] = map[item] + 1;
+    } else {
+      map[item] = 1;
+    }
+  }
   const dfs = (index) => {
+    if (status) {
+      return;
+    }
     if (index > desire.length - 1) {
       console.log("递归完成:", path);
-      const ngift = [...gift];
+      const nmap = { ...map };
       for (let i = 0; i < path.length; i++) {
-        const index = ngift.indexOf(path[i]);
-        if (index === -1) return;
-        ngift.splice(index, 1);
-        if (i === path.length - 1) {
-          status = true;
+        if (nmap[path[i]] && nmap[path[i]] > 0) {
+          nmap[path[i]] = nmap[path[i]] - 1;
+        } else {
+          return;
         }
       }
+      status = true;
       return;
     }
     for (let item of desire[index]) {
@@ -21,9 +32,6 @@ function main(desire, gift) {
       console.log("递归前:", path);
       index++;
       dfs(index);
-      if (status) {
-        return;
-      }
       path.pop();
       index--;
       console.log("递归后:", path);
@@ -32,4 +40,4 @@ function main(desire, gift) {
   dfs(0);
   return status;
 }
-console.log(main([[1, 2], [1, 3, 4], [3]], [1, 3, 4]));
+console.log(main([[1, 2], [1, 3, 4], [3]], [1, 3, 3]));
