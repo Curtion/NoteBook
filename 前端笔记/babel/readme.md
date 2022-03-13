@@ -651,7 +651,7 @@ var a = /*#__PURE__*/_createClass(function a() {
 配置`useBuiltIns`字段为`entry`
 配置`corejs`字段为`3`
 不配置`@babel/plugin-transform-runtime`插件。
-此时进行语法转化的同时也添加了在`targets`之外的`polyfill`。可以引入了特别多的包，实际使用时不推荐这么配置。
+此时进行语法转化的同时也添加了在`targets`之内的`polyfill`。可以引入了特别多的包，实际使用时不推荐这么配置。
 
 # 配置三
 配置：
@@ -877,7 +877,7 @@ var a = /*#__PURE__*/(0, _createClass2.default)(function a() {
 配置`@babel/plugin-transform-runtime`插件，添加`corejs`字段配置为`3`
 
 当`useBuiltIns`为`false`时可以看到结果和配置五一模一样。
-个人猜测，这是因为`plugins`的执行在`presets`之前，通过`plugins`的转化，代码已经变成函数调用的方式(`_interopRequireDefault`),等到`presets`时因为没有使用高版本的API(`Promise`已经被转换为`_promise.default`),所以不需要添加polyfill,`presets`只进行了语法转换。
+个人猜测，这是因为`plugins`的执行在`presets`之前，先通过`plugins`代码转化，等到`presets`时因为没有使用新的的API(`Promise`已经被转换为`_promise.default`来调用),所以不需要添加polyfill,所以`presets`只进行了语法转换。
 
 # 总结
  - 如果不考虑污染全局API(普通业务代码开发)就使用配置四
