@@ -651,7 +651,7 @@ var a = /*#__PURE__*/_createClass(function a() {
 配置`useBuiltIns`字段为`entry`
 配置`corejs`字段为`3`
 不配置`@babel/plugin-transform-runtime`插件。
-此时进行语法转化的同时也添加了在`targets`之内的`polyfill`。可以引入了特别多的包，实际使用时不推荐这么配置。
+此时进行语法转化的同时也添加了在`targets`之内的`polyfill`。可是引入了特别多的包，实际使用时不推荐这么配置。
 
 # 配置三
 配置：
@@ -702,16 +702,16 @@ var a = /*#__PURE__*/_createClass(function a() {
 配置`@babel/preset-env`预设
 配置`useBuiltIns`字段为`usage`
 不配置`@babel/plugin-transform-runtime`插件。
-此时既对语法进行进行了转化(`const`、`class` 关键字等)，也添加了Polyfill(`core-js/modules/es.promise.js`包提供全局Promise对象等)
+此时既对语法进行进行了转化(`const`、`class` 关键字等)，而且是按需添加的Polyfill
 
 # 配置一、配置二、配置三总结
- - 配置一：只对语法转化，不添加polyfill
+ - 配置一：只对语法转换，不添加polyfill
  - 配置二：对语法转换，也添加ployfill，只不过是添加所有的ployfill，这样会导致转换后的代码庞大。
- - 配置三：对语法转化，按需添加ployfill。
+ - 配置三：对语法转换，按需添加ployfill。
 
 正常情况下配置三已经够用了，但是在特殊情况下也会导致新的问题：
  - 添加的ployfill包，污染全局API(在库的开发时容易影响上层用户的代码)
- - 引入的辅助函数在重复生成，例如配置三生成的代码中加入了`_defineProperties`,`_createClass`,`_classCallCheck`三个辅助函数，那么生成每个js文件都会有类似的代码，打包后会引起代码大小增加。
+ - 引入的辅助函数在重复生成，例如配置三生成的代码中加入了 `_defineProperties` , `_createClass`, `_classCallCheck` 三个辅助函数，那么生成每个js文件都会有相同的代码，打包后会引起代码大小增加。
 
 为了解决上述两个问题，需要借助`@babel/plugin-transform-runtime`插件。
 
@@ -822,7 +822,7 @@ var a = /*#__PURE__*/(0, _createClass2.default)(function a() {
 配置`useBuiltIns`字段为`usage`
 配置`@babel/plugin-transform-runtime`插件，添加`corejs`字段配置为`3`
 
-可以看到使用的`Promise`已经是全局对象，而是使用`@babel/runtime-corejs3`提供的方法。
+可以看到使用的`Promise`已经不是全局对象，现在变成了使用`@babel/runtime-corejs3`提供的方法。
 
 # 配置六
 配置：
