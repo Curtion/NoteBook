@@ -41,3 +41,17 @@
 # 汉化
 
 `https://github.com/Kiwi233/Translation-of-GTNH`
+
+# 其它：
+
+## 2.1.2.3qf
+
+如果`opencomputers`提示合成表不完整，那么修改`config/opencomputers/gtnh.recipes`,在最后添加:
+```
+configuratorUpgrade =  true
+
+ritegUpgrade = true
+
+```
+
+原因是GTNH魔改/加入了这俩的配方，但是没有把它的消息加入到合成表中，所以会报错，但是不会影响合成，因为这俩物品合成配方并不由`opencomputers`mod控制。
