@@ -6,9 +6,48 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Demo</title>
+  <style>
+    .ani {
+      height: 100px;
+      width: 100px;
+      background-color: red;
+      animation: gif 1.4s infinite linear;
+    }
+
+    .ani2 {
+      height: 100px;
+      width: 100px;
+      background-color: red;
+      animation: gi 1.4s infinite linear;
+    }
+
+    @keyframes gif {
+      0% {
+        width: 50px;
+      }
+
+      100% {
+        width: 200px;
+      }
+    }
+
+    @keyframes gi {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="ani"></div>
+  <br />
+  <div class="ani2"></div>
+  <br />
   <img src="./test.gif" alt="动图">
   <br />
   <br />
@@ -24,7 +63,7 @@
       let num = 5000000000
       while (true) {
         num--
-        if(num === 0) {
+        if (num === 0) {
           break
         }
       }
