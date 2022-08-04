@@ -55,12 +55,3 @@ ritegUpgrade = true
 ```
 
 原因是GTNH魔改/加入了这俩的配方，但是没有把它的消息加入到合成表中，所以会报错，但是不会影响合成，因为这俩物品合成配方并不由`opencomputers`mod控制。
-
-# Forge迁移Thermos
-
-帮助： https://github.com/GTNewHorizons/GT-New-Horizons-Modpack/issues/6262
-
- - 添加`AMDIForge`
- - 添加`Gambiarras_BQThermosFix`
- - 下载`https://github.com/CyberdyneCC/Thermos/releases/download/58/Thermos-1.7.10-1614-server.jar`
- - 启动命令中修改为`Thermos`核心
