@@ -36,7 +36,9 @@
   -  `Waila`显示设置(可选)
      -  `config/Waila.cfg`
      -  `config/WailaHarvestability.cfg`
-     -  `wailaplugins.cfg`
+     -  `config/wailaplugins.cfg`
+
+在`.minecraft/config/defaultserverlist.json`中可以`servers`字段为多有游戏默认服务器列表，可修改，可删除。
 
 # 汉化
 
