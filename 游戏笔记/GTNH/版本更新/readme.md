@@ -13,6 +13,7 @@
  - `World`
  - `backups/aroma-backup-aliyundrive`
  - `backups/aliyundrive`
+ - `config/JourneyMapServer` 旅行地图配置文件，如果不迁移会导致WorldID变化，进而导致客户端的传送点和地图数据丢失
 
 启动前准备：
  - 修改新实例 `server.properties`
