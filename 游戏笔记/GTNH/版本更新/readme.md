@@ -11,8 +11,8 @@
  - `visualprospecting`
  - `eula.txt`
  - `World`
- - `config.toml`
- - `aroma_backup_cos-linux-x64`
+ - `backups/aroma-backup-aliyundrive`
+ - `backups/aliyundrive`
 
 启动前准备：
  - 修改新实例 `server.properties`
