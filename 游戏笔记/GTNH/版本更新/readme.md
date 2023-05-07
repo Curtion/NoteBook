@@ -20,6 +20,9 @@
    - `online-mode=false`(设置离线服务器)
    - `white-list=false`(关闭白名单)
 
+修改`config/StorageDrawers.cfg`的`controller`字段:`maxDrawers=1000`, `range=12`。 这是在修改抽屉管理器的最大管理范围和数量。
+ 
+
 ## 客户端
 
 复制当前`./client/mods`文件夹到新实例
