@@ -10,6 +10,7 @@ services:
       - DRONE_RPC_SECRET=jidian44886
       - DRONE_SERVER_HOST=114.116.119.165:18080
       - DRONE_SERVER_PROTO=http
+      - DRONE_USER_CREATE=username:curtion@126.com,admin:true
     ports:
       - "8000:80"
       - "4430:443"
