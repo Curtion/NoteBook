@@ -21,6 +21,7 @@ services:
     container_name: docker_runner
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/docker/daemon.json:/etc/docker/daemon.json
     environment:
       - DRONE_RPC_PROTO=http
       - DRONE_RPC_HOST=114.116.119.165:18080
