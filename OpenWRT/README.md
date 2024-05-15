@@ -21,4 +21,4 @@
 
 # 安装tailscale
 
-![tailscale](../工具软件/headscale/README.md)
+[tailscale](../工具软件/headscale/README.md)
