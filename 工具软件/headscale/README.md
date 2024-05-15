@@ -1,5 +1,7 @@
 # OpenWRT
 
+`https://openwrt.org/docs/guide-user/services/vpn/tailscale/start`
+
 `opkg update`
 `opkg install tailscale`
 
@@ -13,11 +15,11 @@ procd_append_param command --tun tailscale0
 
 ## 公司路由器
 
-`tailscale up --advertise-routes=192.168.88.0/24,192.168.0.0/24,192.168.8.0/24 --login-server=https://hs.3gxk.net --accept-routes --accept-dns=false --reset`
+`tailscale up --advertise-routes=192.168.88.0/24,192.168.0.0/24,192.168.8.0/24 --login-server=https://hs.3gxk.net --netfilter-mode=off --accept-routes --accept-dns=false --reset`
 
 ## 家用路由器
 
-`tailscale up --advertise-routes=10.10.10.0/24 --login-server=https://hs.3gxk.net --accept-routes --accept-dns=false --reset`
+`tailscale up --advertise-routes=10.10.10.0/24 --login-server=https://hs.3gxk.net --netfilter-mode=off --accept-routes --accept-dns=false --reset`
 
 
 # 防火墙
