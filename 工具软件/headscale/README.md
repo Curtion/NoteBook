@@ -22,17 +22,8 @@ procd_append_param command --tun tailscale0
 
 # 防火墙
 
-## 自定义配置防火墙
 
-``` shell
-iptables -I FORWARD -i tailscale0 -j ACCEPT
-iptables -I FORWARD -o tailscale0 -j ACCEPT
-iptables -t nat -I POSTROUTING -o tailscale0 -j MASQUERADE
-```
-
-## GUI配置防火墙
-
-创建一个`tailscale0`接口的防火墙
+创建一个`tailscale0`接口的防火墙, 开启`IP动态伪装`和`MSS钳制`
 
 # 服务器
 
