@@ -22,3 +22,12 @@
 # 安装tailscale
 
 [tailscale](../工具软件/headscale/README.md)
+
+
+# 安装mwan3
+
+用于双wan口故障转移
+
+`opkg install luci-app-mwan3 luci-i18n-mwan3-zh-cn`
+
+mwan3默认支持iptables, 但是不支持nftables, 需要安装`opkg install iptables-nft ip6tables-nft`兼容
