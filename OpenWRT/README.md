@@ -35,3 +35,10 @@ mwan3默认支持iptables, 但是不支持nftables, 需要安装`opkg install ip
 ## 问题
 
 自动检测会经常失效, 设置ping baidu.com和jd.com都会有失败的情况, 不知原因,已卸载. 后续如果ikuai的ipv6中继支持
+
+
+# IPV6中继自定义DNS
+
+`/etc/config/dhcp`在`lan`中新增一行 `list dns ''`, 填写`''`会设置为路由器的地址为DNS
+
+查看[原理](https://forum.openwrt.org/t/rewriting-dns-in-relay-mode-in-odhcpd/120574)
