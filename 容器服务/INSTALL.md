@@ -42,6 +42,15 @@ WantedBy=multi-user.target
  - `systemctl enable docker`
  - `systemctl start docker`
 
+### 安装docker-compose
+
+ - 下载二进制文件: https://github.com/docker/compose/releases
+ - 重命名为`docker-compose`
+ - `chmod +x docker-compose`
+  - `mv docker-compose $HOME/.docker/cli-plugins`
+
+后续可以使用`docker sompose`命令。
+
 ## 使用国内源安装
 
  - `sudo -v`
