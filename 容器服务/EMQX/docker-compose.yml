@@ -1,0 +1,112 @@
+services:
+  emqx1:
+    image: emqx/emqx:5.8.0
+    container_name: emqx1
+    hostname: node1
+    environment:
+    - "EMQX_NODE_NAME=emqx@node1.3gxk.net"
+    - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
+    - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
+    ports:
+      - "1883:1883"
+      - "8083:8083"
+      - "8084:8084"
+      - "8883:8883"
+      - "18083:18083"
+    volumes:
+      - ./emqx1/data:/opt/emqx/data
+      - ./emqx1/log:/opt/emqx/log
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
+      interval: 5s
+      timeout: 25s
+      retries: 5
+    networks:
+      emqx-bridge:
+        aliases:
+        - node1.3gxk.net
+  emqx2:
+    image: emqx/emqx:5.8.0
+    container_name: emqx2
+    hostname: node2
+    environment:
+    - "EMQX_NODE_NAME=emqx@node2.3gxk.net"
+    - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
+    - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
+    volumes:
+      - ./emqx2/data:/opt/emqx/data
+      - ./emqx2/log:/opt/emqx/log
+    restart: unless-stopped
+    networks:
+      emqx-bridge:
+        aliases:
+        - node2.3gxk.net
+  emqx3:
+    image: emqx/emqx:5.8.0
+    container_name: emqx3
+    hostname: node3
+    environment:
+    - "EMQX_NODE_NAME=emqx@node3.3gxk.net"
+    - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
+    - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
+    volumes:
+      - ./emqx3/data:/opt/emqx/data
+      - ./emqx3/log:/opt/emqx/log
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
+      interval: 5s
+      timeout: 25s
+      retries: 5
+    networks:
+      emqx-bridge:
+        aliases:
+        - node3.3gxk.net
+  emqx4:
+    image: emqx/emqx:5.8.0
+    container_name: emqx4
+    hostname: node4
+    environment:
+    - "EMQX_NODE_NAME=emqx@node4.3gxk.net"
+    - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
+    - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
+    - "EMQX_NODE_ROLE=replicant"
+    volumes:
+      - ./emqx4/data:/opt/emqx/data
+      - ./emqx4/log:/opt/emqx/log
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
+      interval: 5s
+      timeout: 25s
+      retries: 5
+    networks:
+      emqx-bridge:
+        aliases:
+        - node4.3gxk.net
+  emqx5:
+    image: emqx/emqx:5.8.0
+    container_name: emqx5
+    hostname: node5
+    environment:
+    - "EMQX_NODE_NAME=emqx@node5.3gxk.net"
+    - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
+    - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
+    - "EMQX_NODE_ROLE=replicant"
+    volumes:
+      - ./emqx5/data:/opt/emqx/data
+      - ./emqx5/log:/opt/emqx/log
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
+      interval: 5s
+      timeout: 25s
+      retries: 5
+    networks:
+      emqx-bridge:
+        aliases:
+        - node5.3gxk.net
+networks:
+  emqx-bridge:
+    driver: bridge
