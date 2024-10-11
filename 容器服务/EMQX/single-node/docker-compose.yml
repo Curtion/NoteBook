@@ -14,6 +14,7 @@ services:
     volumes:
       - emqx_data:/opt/emqx/data
       - emqx_log:/opt/emqx/log
+      - emqx_plugins:/opt/emqx/plugins
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
@@ -30,3 +31,4 @@ networks:
 volumes:
   emqx_data:
   emqx_log:
+  emqx_plugins:
