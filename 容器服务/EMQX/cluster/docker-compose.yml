@@ -4,6 +4,8 @@ x-healthcheck: &x-healthcheck
     interval: 5s
     timeout: 25s
     retries: 5
+  environment:
+  - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
 services:
   emqx1:
     image: emqx/emqx:5.8.0
@@ -12,7 +14,6 @@ services:
     environment:
     - "EMQX_NODE_NAME=emqx@node1.3gxk.net"
     - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
-    - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
     ports:
       - "1883:1883"
       - "8083:8083"
@@ -36,7 +37,6 @@ services:
     environment:
     - "EMQX_NODE_NAME=emqx@node2.3gxk.net"
     - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
-    - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
     volumes:
       - emqx2_data:/opt/emqx/data
       - emqx2_log:/opt/emqx/log
@@ -53,7 +53,6 @@ services:
     environment:
     - "EMQX_NODE_NAME=emqx@node3.3gxk.net"
     - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
-    - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
     volumes:
       - emqx3_data:/opt/emqx/data
       - emqx3_log:/opt/emqx/log
@@ -71,7 +70,6 @@ services:
     environment:
     - "EMQX_NODE_NAME=emqx@node4.3gxk.net"
     - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
-    - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
     - "EMQX_NODE_ROLE=replicant"
     volumes:
       - emqx4_data:/opt/emqx/data
@@ -90,7 +88,6 @@ services:
     environment:
     - "EMQX_NODE_NAME=emqx@node5.3gxk.net"
     - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
-    - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
     - "EMQX_NODE_ROLE=replicant"
     volumes:
       - emqx5_data:/opt/emqx/data
