@@ -14,8 +14,8 @@ services:
       - "8883:8883"
       - "18083:18083"
     volumes:
-      - ./emqx1/data:/opt/emqx/data
-      - ./emqx1/log:/opt/emqx/log
+      - emqx1_data:/opt/emqx/data
+      - emqx1_log:/opt/emqx/log
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
@@ -35,8 +35,8 @@ services:
     - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
     - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
     volumes:
-      - ./emqx2/data:/opt/emqx/data
-      - ./emqx2/log:/opt/emqx/log
+      - emqx2_data:/opt/emqx/data
+      - emqx2_log:/opt/emqx/log
     restart: unless-stopped
     networks:
       emqx-bridge:
@@ -51,8 +51,8 @@ services:
     - "EMQX_CLUSTER__DISCOVERY_STRATEGY=static"
     - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
     volumes:
-      - ./emqx3/data:/opt/emqx/data
-      - ./emqx3/log:/opt/emqx/log
+      - emqx3_data:/opt/emqx/data
+      - emqx3_log:/opt/emqx/log
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
@@ -73,8 +73,8 @@ services:
     - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
     - "EMQX_NODE_ROLE=replicant"
     volumes:
-      - ./emqx4/data:/opt/emqx/data
-      - ./emqx4/log:/opt/emqx/log
+      - emqx4_data:/opt/emqx/data
+      - emqx4_log:/opt/emqx/log
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
@@ -95,8 +95,8 @@ services:
     - "EMQX_CLUSTER__STATIC__SEEDS=[emqx@node1.3gxk.net,emqx@node2.3gxk.net,emqx@node3.3gxk.net,emqx@node4.3gxk.net,emqx@node5.3gxk.net]"
     - "EMQX_NODE_ROLE=replicant"
     volumes:
-      - ./emqx5/data:/opt/emqx/data
-      - ./emqx5/log:/opt/emqx/log
+      - emqx5_data:/opt/emqx/data
+      - emqx5_log:/opt/emqx/log
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
@@ -110,3 +110,14 @@ services:
 networks:
   emqx-bridge:
     driver: bridge
+volumes:
+  emqx1_data:
+  emqx1_log:
+  emqx2_data:
+  emqx2_log:
+  emqx3_data:
+  emqx3_log:
+  emqx4_data:
+  emqx4_log:
+  emqx5_data:
+  emqx5_log:
