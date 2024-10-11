@@ -1,3 +1,9 @@
+x-healthcheck: &x-healthcheck
+  healthcheck:
+    test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
+    interval: 5s
+    timeout: 25s
+    retries: 5
 services:
   emqx1:
     image: emqx/emqx:5.8.0
@@ -18,11 +24,7 @@ services:
       - emqx1_log:/opt/emqx/log
       - emqx1_plugins:/opt/emqx/plugins
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
-      interval: 5s
-      timeout: 25s
-      retries: 5
+    <<: *x-healthcheck
     networks:
       emqx-bridge:
         aliases:
@@ -57,11 +59,7 @@ services:
       - emqx3_log:/opt/emqx/log
       - emqx3_plugins:/opt/emqx/plugins
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
-      interval: 5s
-      timeout: 25s
-      retries: 5
+    <<: *x-healthcheck
     networks:
       emqx-bridge:
         aliases:
@@ -80,11 +78,7 @@ services:
       - emqx4_log:/opt/emqx/log
       - emqx4_plugins:/opt/emqx/plugins
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
-      interval: 5s
-      timeout: 25s
-      retries: 5
+    <<: *x-healthcheck
     networks:
       emqx-bridge:
         aliases:
@@ -103,11 +97,7 @@ services:
       - emqx5_log:/opt/emqx/log
       - emqx5_plugins:/opt/emqx/plugins
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "/opt/emqx/bin/emqx", "ctl", "status"]
-      interval: 5s
-      timeout: 25s
-      retries: 5
+    <<: *x-healthcheck
     networks:
       emqx-bridge:
         aliases:
