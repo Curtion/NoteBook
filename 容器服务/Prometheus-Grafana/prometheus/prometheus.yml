@@ -36,7 +36,7 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - 10.0.0.17:9100
+    - host.docker.internal:9100
 - job_name: headscale
   honor_timestamps: true
   scrape_interval: 15s
@@ -45,4 +45,4 @@ scrape_configs:
   scheme: http
   static_configs:
   - targets:
-    - 10.0.0.17:9090
+    - host.docker.internal:9090

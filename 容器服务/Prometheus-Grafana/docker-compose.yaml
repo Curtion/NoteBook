@@ -6,6 +6,8 @@ services:
       - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
       - 19090:9090
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     restart: unless-stopped
     volumes:
       - ./prometheus:/etc/prometheus
@@ -25,7 +27,9 @@ services:
   nats_status:
     image: natsio/prometheus-nats-exporter:latest
     container_name: nats_status
-    command: ["-channelz","-connz","-connz_detailed","-healthz","-gatewayz","-accstatz","-leafz","-routez","-serverz","-subz","-varz","-jsz=all","http://10.0.0.17:8222"]
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    command: ["-channelz","-connz","-connz_detailed","-healthz","-gatewayz","-accstatz","-leafz","-routez","-serverz","-subz","-varz","-jsz=all","http://host.docker.internal:8222"]
     restart: unless-stopped
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
