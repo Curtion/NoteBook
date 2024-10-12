@@ -3,7 +3,7 @@ services:
     image: prom/prometheus
     container_name: prometheus
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+      - "--config.file=/etc/prometheus/prometheus.yml"
     ports:
       - 19090:9090
     restart: unless-stopped
@@ -22,6 +22,12 @@ services:
     volumes:
       - ./grafana:/etc/grafana/provisioning/datasources
       - grafana_data:/var/lib/grafana
+  nats_status:
+    image: natsio/prometheus-nats-exporter:latest
+    container_name: nats_status
+    command: ["-channelz","-connz","-connz_detailed","-healthz","-gatewayz","-accstatz","-leafz","-routez","-serverz","-subz","-varz","-jsz=all","http://10.0.0.17:8222"]
+    restart: unless-stopped
+
 volumes:
   prometheus_data:
   grafana_data:
