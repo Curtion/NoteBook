@@ -1,0 +1,47 @@
+services:
+  nats1:
+    image: nats:2.10.21-alpine
+    ports:
+      - "4222:4222"
+      - "8222:8222"      
+    volumes:
+      - nats_data1:/data
+    command:
+      - "--name=nats1"
+      - "--cluster_name=c1"
+      - "--cluster=nats://nats1:6222"
+      - "--routes=nats-route://nats1:6222,nats-route://nats2:6222,nats-route://nats3:6222"
+      - "--http_port=8222"
+      - "--js"
+      - "--sd=/data"
+
+  nats2:
+    image: nats:2.10.21-alpine
+    volumes:
+      - nats_data2:/data
+    command:
+      - "--name=nats2"
+      - "--cluster_name=c1"
+      - "--cluster=nats://nats2:6222"
+      - "--routes=nats-route://nats1:6222,nats-route://nats2:6222,nats-route://nats3:6222"
+      - "--http_port=8222"
+      - "--js"
+      - "--sd=/data"
+
+  nats3:
+    image: nats:2.10.21-alpine
+    volumes:
+      - nats_data3:/data
+    command:
+      - "--name=nats3"
+      - "--cluster_name=c1"
+      - "--cluster=nats://nats3:6222"
+      - "--routes=nats-route://nats1:6222,nats-route://nats2:6222,nats-route://nats3:6222"
+      - "--http_port=8222"
+      - "--js"
+      - "--sd=/data"
+
+volumes:
+  nats_data1:
+  nats_data2:
+  nats_data3:
