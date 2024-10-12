@@ -27,6 +27,16 @@ services:
     container_name: nats_status
     command: ["-channelz","-connz","-connz_detailed","-healthz","-gatewayz","-accstatz","-leafz","-routez","-serverz","-subz","-varz","-jsz=all","http://10.0.0.17:8222"]
     restart: unless-stopped
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
 
 volumes:
   prometheus_data:
