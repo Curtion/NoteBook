@@ -1,0 +1,15 @@
+services:
+  transfer:
+    image: dutchcoders/transfer.sh:latest
+    ports:
+      - "8001:8080"
+    volumes:
+      - ./upload/:/data/upload
+    command:
+      - --provider
+      - local
+      - --basedir
+      - /data/upload
+      - --log
+      - /data/upload/transfer.log
+    restart: unless-stopped
