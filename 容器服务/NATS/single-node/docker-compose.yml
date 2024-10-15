@@ -11,6 +11,7 @@ services:
       - "--http_port=8222"
       - "--js"
       - "--sd=/data"
+    restart: unless-stopped
 
 volumes:
   nats_data:

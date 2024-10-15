@@ -14,6 +14,7 @@ services:
       - "--http_port=8222"
       - "--js"
       - "--sd=/data"
+    restart: unless-stopped
 
   nats2:
     image: nats:2.10.21-alpine
@@ -27,6 +28,7 @@ services:
       - "--http_port=8222"
       - "--js"
       - "--sd=/data"
+    restart: unless-stopped
 
   nats3:
     image: nats:2.10.21-alpine
@@ -40,6 +42,7 @@ services:
       - "--http_port=8222"
       - "--js"
       - "--sd=/data"
+    restart: unless-stopped
 
 volumes:
   nats_data1:
