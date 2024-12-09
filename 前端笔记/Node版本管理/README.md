@@ -9,3 +9,5 @@
 在使用Windows的`sudo pnpm dev`时会报错: `'node' is not recognized as an internal or external command, operable program or batch file.`
 
 Issues: [#1343](https://github.com/Schniz/fnm/issues/1343)
+
+使用`sudo -E`传递环境变量解决
