@@ -14,5 +14,6 @@ Issues: [#1343](https://github.com/Schniz/fnm/issues/1343)
 
 在VSCode中使用`simple-git-hooks`+`lint-staged`时, 会出现`fnm: command not found`错误, 本质原因还是环境变量的问题
 
+解决方案: 使用命令行`code`打开VSCode, 这样VSCode会继承当前的环境变量
 
 # vfox
