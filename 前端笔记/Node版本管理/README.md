@@ -11,3 +11,5 @@
 Issues: [#1343](https://github.com/Schniz/fnm/issues/1343)
 
 使用`sudo -E`传递环境变量解决
+
+在VSCode中使用`simple-git-hooks`+`lint-staged`时, 会出现`fnm: command not found`错误, 本质原因还是环境变量的问题
