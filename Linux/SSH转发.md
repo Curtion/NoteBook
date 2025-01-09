@@ -40,6 +40,35 @@
 
 这会在`localhost:8080`上开启一个socks5服务器，此服务器会通过`root@3gxk.net`中转.
 
+# 自动重连脚本示例
+
+需要安装`sshpass`和`autossh`
+
+```bash
+#!/bin/bash
+
+PASSWORD="123456"
+USER="root"
+HOST="192.168.0.100"
+PORT="8080"
+
+while :; do
+  sshpass -v \
+    -p "${PASSWORD}" \
+    autossh \
+      -o "ServerAliveInterval 60" \
+      -o "ServerAliveCountMax 2" \
+      -o "ConnectTimeout 15" \
+      -o "ExitOnForwardFailure yes" \
+      -o "StrictHostKeyChecking no" \
+      -o "UserKnownHostsFile perfect_privacy_known_hosts" \
+      -4 -N -D 0.0.0.0:${PORT} ${USER}@${HOST}
+
+  echo "SSH connection exited, wait 15s before re-trying"
+  sleep 15
+done
+```
+
 # 参数
 
 `-N`表示不执行shell命令
