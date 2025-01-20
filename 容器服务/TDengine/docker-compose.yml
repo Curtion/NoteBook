@@ -1,0 +1,13 @@
+services:
+  taosd:
+    image: tdengine/tdengine:3.3.5.0
+    hostname: tdengine
+    restart: unless-stopped
+    volumes:
+      - ./taos/lib:/var/lib/taos
+      - ./taos/log:/var/log/taos
+    ports:
+      - "6030:6030"
+      - "6041:6041"
+      - "6043-6049:6043-6049"
+      - "6043-6049:6043-6049/udp"
