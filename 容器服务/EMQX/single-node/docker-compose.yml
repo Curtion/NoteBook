@@ -1,6 +1,6 @@
 services:
   emqx1:
-    image: emqx/emqx:5.8.0
+    image: emqx/emqx:5.8
     container_name: emqx1
     hostname: node1
     environment:
