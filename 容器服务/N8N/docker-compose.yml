@@ -4,6 +4,7 @@ services:
     container_name: n8n
     environment:
       - TZ=Asia/Shanghai
+      - GENERIC_TIMEZONE=Asia/Shanghai
     ports:
       - "5678:5678"
     volumes:
