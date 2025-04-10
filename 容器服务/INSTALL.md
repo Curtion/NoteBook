@@ -49,7 +49,7 @@ WantedBy=multi-user.target
  - `chmod +x docker-compose`
  - `mv docker-compose $HOME/.docker/cli-plugins`
 
-后续可以使用`docker sompose`命令。
+后续可以使用`docker compose`命令。
 
 ## 使用国内源安装
 
