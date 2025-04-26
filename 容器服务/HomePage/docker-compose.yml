@@ -1,0 +1,11 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 3000:3000
+    volumes:
+      - ./config:/app/config
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: home.3gxk.net,10.10.10.173:3000
+    restart: unless-stopped
