@@ -16,4 +16,10 @@ Issues: [#1343](https://github.com/Schniz/fnm/issues/1343)
 
 解决方案: 使用命令行`code`打开VSCode, 这样VSCode会继承当前的环境变量
 
+## 解决方案二
+
+一些第三方软件(例如chatwise)会在系统环境变量中的node/npx等命令, 如果都使用powershell来启动软件会非常的繁琐，此时可以添加以下路径到`PATH`中:
+
+`%USERPROFILE%\AppData\Roaming\fnm\aliases\default`
+
 # vfox
