@@ -29,8 +29,16 @@ procd_append_param command --tun tailscale0
 
 # 服务器
 
+## 创建用户
+
+`headscale users create curtion`
+
+## 注册节点
+
+`headscale nodes register --user curtion --key xxxxxxxxxxxxxxx`
+
 ## 开启路由发现
 
-`headscale routes enable -r 1`
-
-
+获取ID: `headscale nodes list`
+查询路由: `headscale nodes routes`
+开启路由发现: `headscale nodes approve-routes -i 1 -r "10.10.10.0/24"`
