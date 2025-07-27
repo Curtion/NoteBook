@@ -18,3 +18,7 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 # 配置主题
 
 `oh-my-posh.exe init pwsh --config 'D:\OneDrive\同步\onmyposh\omp.json' | Invoke-Expression`
+
+# 安装带图标的字体
+
+`oh-my-posh font install`
