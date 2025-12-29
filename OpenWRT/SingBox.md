@@ -2,7 +2,7 @@
 
 https://github.com/nikkinikki-org/OpenWrt-momo
 
-# 模板
+# 基础模板
 
 ```json
 {
@@ -170,3 +170,7 @@ https://github.com/nikkinikki-org/OpenWrt-momo
   }
 }
 ```
+
+# 自用模板(私有)
+
+https://github.com/Curtion/proxy/blob/main/sing-box/json/template.json
