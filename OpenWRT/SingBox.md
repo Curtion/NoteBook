@@ -15,7 +15,7 @@ https://github.com/nikkinikki-org/OpenWrt-momo
       "external_controller": "0.0.0.0:9090",
       "external_ui": "ui",
       "external_ui_download_url": "https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip",
-      "external_ui_download_detour": "selector",
+      "external_ui_download_detour": "Proxy",
       "default_mode": "Rule"
     }
   },
@@ -62,7 +62,7 @@ https://github.com/nikkinikki-org/OpenWrt-momo
         "client_subnet": "114.114.114.114/24"
       }
     ],
-    "strategy": "prefer_ipv4"
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
@@ -98,7 +98,50 @@ https://github.com/nikkinikki-org/OpenWrt-momo
     {
       "type": "selector",
       "tag": "Proxy",
-      "outbounds": []
+      "outbounds": [
+        "自动选择:香港",
+        "自动选择",
+        "Direct"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "国内流量",
+      "outbounds": [
+        "Direct",
+        "Proxy"
+      ]
+    },
+    {
+      "type": "selector",
+      "tag": "AI",
+      "outbounds": [
+        "自动选择:美国"
+      ]
+    },
+    {
+      "tag": "自动选择",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
+    },
+    {
+      "tag": "自动选择:香港",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
+    },
+    {
+      "tag": "自动选择:美国",
+      "type": "urltest",
+      "outbounds": [],
+      "url": "http://www.gstatic.com/generate_204",
+      "interval": "10m",
+      "tolerance": 50
     },
     {
       "type": "direct",
@@ -113,19 +156,15 @@ https://github.com/nikkinikki-org/OpenWrt-momo
         "action": "sniff"
       },
       {
+        "inbound": "dns-in",
+        "action": "hijack-dns"
+      },
+      {
         "protocol": "dns",
         "action": "hijack-dns"
       },
       {
         "clash_mode": "Direct",
-        "outbound": "Direct"
-      },
-      {
-        "clash_mode": "Proxy",
-        "outbound": "Proxy"
-      },
-      {
-        "rule_set": "geosite-cn",
         "outbound": "Direct"
       },
       {
@@ -135,6 +174,26 @@ https://github.com/nikkinikki-org/OpenWrt-momo
       {
         "ip_is_private": true,
         "outbound": "Direct"
+      },
+      {
+        "rule_set": [
+          "geosite-cn",
+          "geoip-cn"
+        ],
+        "outbound": "国内流量"
+      },
+      {
+        "rule_set": [
+          "OpenAI",
+          "Claude",
+          "Gemini",
+          "Github Copilot"
+        ],
+        "outbound": "AI"
+      },
+      {
+        "clash_mode": "Proxy",
+        "outbound": "Proxy"
       }
     ],
     "rule_set": [
@@ -165,6 +224,36 @@ https://github.com/nikkinikki-org/OpenWrt-momo
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
         "download_detour": "Direct"
+      },
+      {
+        "tag": "OpenAI",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/Repcz/tool@X/sing-box/Rules/OpenAI.srs",
+        "download_detour": "Direct"
+      },
+      {
+        "tag": "Claude",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/Repcz/tool@X/sing-box/Rules/Claude.srs",
+        "download_detour": "Direct"
+      },
+      {
+        "tag": "Gemini",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google-gemini.srs",
+        "download_detour": "Direct"
+      },
+      {
+        "tag": "Github Copilot",
+        "type": "inline",
+        "rules": [
+          {
+            "domain_suffix": "githubcopilot.com"
+          }
+        ]
       }
     ]
   }
