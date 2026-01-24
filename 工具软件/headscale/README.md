@@ -21,6 +21,31 @@ procd_append_param command --tun tailscale0
 
 `tailscale up --advertise-routes=10.10.10.0/24 --login-server=https://headscale.3gxk.net --netfilter-mode=off --accept-routes --accept-dns=false --reset`
 
+## 强制DREP
+
+`vim /etc/init.d/tailscale`
+
+在`start_service`函数中添加
+
+``` shell
+procd_set_param env TS_DEBUG_ALWAYS_USE_DERP=true
+```
+
+类似这样: 
+
+``` shell
+start_service() {
+    # ... 前面的代码 ...
+    procd_open_instance
+    procd_set_param command /usr/sbin/tailscaled
+    
+    # 添加下面这一行
+    procd_set_param env TS_DEBUG_ALWAYS_USE_DERP=true
+    
+    # ... 后面可能还有其他参数，如 --port 等 ...
+    procd_close_instance
+}
+```
 
 # 防火墙
 
