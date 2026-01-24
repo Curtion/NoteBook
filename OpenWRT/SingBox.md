@@ -187,7 +187,7 @@ https://github.com/nikkinikki-org/OpenWrt-momo
           "OpenAI",
           "Claude",
           "Gemini",
-          "Github Copilot"
+          "Other AI Services"
         ],
         "outbound": "AI"
       },
@@ -247,9 +247,12 @@ https://github.com/nikkinikki-org/OpenWrt-momo
         "download_detour": "Direct"
       },
       {
-        "tag": "Github Copilot",
+        "tag": "Other AI Services",
         "type": "inline",
         "rules": [
+          {
+            "domain_suffix": "stitch.withgoogle.com"
+          },
           {
             "domain_suffix": "githubcopilot.com"
           }
