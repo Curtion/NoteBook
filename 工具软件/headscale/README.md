@@ -21,6 +21,16 @@ procd_append_param command --tun tailscale0
 
 `tailscale up --advertise-routes=10.10.10.0/24 --login-server=https://headscale.3gxk.net --netfilter-mode=off --accept-routes --accept-dns=false --reset`
 
+## 便携路由器
+
+`tailscale up --advertise-routes=192.168.66.0/24 --login-server=https://headscale.3gxk.net --accept-routes --accept-dns=false --reset`
+
+### GL-INET 修改启动脚本
+
+`vim /usr/bin/gl_tailscale`
+
+修改其中`/usr/sbin/tailscale up`行, 为上述命令或者增加`--login-server=https://headscale.3gxk.net`参数
+
 ## 强制DREP
 
 `vim /etc/init.d/tailscale`
