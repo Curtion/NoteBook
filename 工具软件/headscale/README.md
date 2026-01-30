@@ -23,7 +23,7 @@ procd_append_param command --tun tailscale0
 
 ## 便携路由器
 
-`tailscale up --advertise-routes=192.168.66.0/24 --login-server=https://headscale.3gxk.net --accept-routes --accept-dns=false --reset`
+`tailscale up --advertise-routes=192.168.66.0/24,192.168.55.0/24 --login-server=https://headscale.3gxk.net --accept-routes --accept-dns=false --reset`
 
 ### GL-INET 修改启动脚本
 
