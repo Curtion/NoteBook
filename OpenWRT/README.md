@@ -135,10 +135,25 @@ case "$1" in
 esac
 ```
 
-7. 启动服务
+7. 启动服务(部分情况不可行)
 `/etc/init.d/sing-box enable`
 
 `/etc/init.d/sing-box start`
+
+例如在GL-INET的路由器上, USB供电会在系统启动后才会开启, 但是随身WIFI没有启动的情况下singbox一定会启动失败, 因此应该是用下面的方案设置自启:
+
+修改 `vim /etc/hotplug.d/iface/99-sing-box`:
+
+```shell
+#!/bin/sh
+
+if [ "$ACTION" = "ifup" ]; then
+    if [ "$INTERFACE" = "wan" ] || [ "$INTERFACE" = "tethering" ]; then
+        logger -t sing-box "$INTERFACE is up, restarting sing-box..."
+        /etc/init.d/sing-box restart
+    fi
+fi
+```
 
 # 安装tailscale
 
