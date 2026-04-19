@@ -155,6 +155,38 @@ if [ "$ACTION" = "ifup" ]; then
 fi
 ```
 
+## 自动安装脚本
+
+仓库内提供了 [install-singbox-glinet.ps1](install-singbox-glinet.ps1), 用于从 Windows 机器通过 `ssh` / `scp` 在指定 OpenWRT 设备上自动完成以下操作:
+
+- 下载或上传 sing-box 的 `.ipk` 安装包
+- 解压 `data.tar.gz` 并覆盖到目标机器
+- 幂等修改 `/etc/init.d/sing-box`, 为 `tproxy.sh` 增加 `start` / `stop` / `reload` 挂钩
+- 覆盖写入 `/etc/sing-box/tproxy.sh`
+- 覆盖写入 `/etc/hotplug.d/iface/99-sing-box`
+- 禁用 `/etc/init.d/sing-box enable` 方式的开机启动, 改为使用 `99-sing-box` 热插拔方案
+- 如果没有传入新的 `config.json`, 则保留目标机器现有 `/etc/sing-box/config.json`
+
+脚本默认会安装 `1.12.12`, 并选择该版本下 `openwrt_aarch64_cortex-a53` 对应的 `.ipk`。这样可以兼容当前仓库和现有设备上常见的 legacy inbound 配置字段。若要安装 `1.13+`, 需要先迁移 `config.json`, 然后再显式传入 `-Version`、`-PackageUrl` 或 `-PackagePath`。
+
+示例:
+
+```powershell
+pwsh ./install-singbox-glinet.ps1 -TargetHost 192.168.8.1 -ConfigPath .\config.json
+```
+
+```powershell
+pwsh ./install-singbox-glinet.ps1 -TargetHost 192.168.8.1 -IdentityFile C:\Users\me\.ssh\id_ed25519 -Version 1.12.12 -ConfigPath .\config.json
+```
+
+```powershell
+pwsh ./install-singbox-glinet.ps1 -TargetHost 192.168.8.1 -PackagePath .\sing-box-1.12.12-openwrt-aarch64_cortex-a53.ipk -HotplugInterface wan,tethering
+```
+
+`-Host` 仍然保留为兼容别名, 但推荐优先使用 `-TargetHost`。
+
+重复执行不会重复追加 init 补丁, 也不会因为没有上传新配置而覆盖掉目标机器已有的 `config.json`。
+
 # 安装tailscale
 
 [tailscale](../工具软件/headscale/README.md)
